@@ -13,5 +13,5 @@ If Not FSO.FolderExists(srcDir) Then
 End If
 
 Dump = """C:\Program Files (x86)\1cv8\8.3.9.2170\bin\1cv8.exe"" DESIGNER /F""C:\files\repo\sysdb"" /DumpExternalDataProcessorOrReportToFiles """ & srcDir & """ ""C:\files\repo\mfo_epf\" & epfFile & """ -Format Hierarchical"
-'MsgBox Dump
+
 WShell.Run Dump, 0, True
