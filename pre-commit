@@ -5,12 +5,12 @@ echo 'Start hooks before commit for erf and epf'
 epfFiles=$(git status --short | grep -E '^(A|M)' | awk '{ print $2 }' | grep -E '\.erf$')
 
 for file in $epfFiles; do
-	wscript .git/hooks/dump.vbs $file
+	wscript .git/hooks/1cv8/dump.vbs $file
 done
 
 # All modified/added epf files
 epfFiles=$(git status --short | grep -E '^(A|M)' | awk '{ print $2 }' | grep -E '\.epf$')
 
 for file in $epfFiles; do
-	wscript .git/hooks/dump.vbs $file
+	wscript .git/hooks/1cv8/dump.vbs $file
 done
