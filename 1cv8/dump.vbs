@@ -12,6 +12,6 @@ If Not FSO.FolderExists(srcDir) Then
 	FSO.CreateFolder(srcDir)
 End If
 
-Dump = """C:\Program Files (x86)\1cv8\8.3.9.2170\bin\1cv8.exe"" DESIGNER /F""C:\files\repo\sysdb"" /DumpExternalDataProcessorOrReportToFiles """ & srcDir & """ ""C:\files\repo\mfo_epf\" & epfFile & """ -Format Hierarchical"
+Dump = """C:\Program Files (x86)\1cv8\8.3.10.2252\bin\1cv8.exe"" DESIGNER /F""C:\files\repo\sysdb"" /DumpExternalDataProcessorOrReportToFiles """ & srcDir & """ ""C:\files\repo\mfo_epf\" & epfFile & """ -Format Hierarchical"
 
 WShell.Run Dump, 0, True
