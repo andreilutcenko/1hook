@@ -1,12 +1,17 @@
-Set WShell=WScript.CreateObject("WScript.Shell")
+'Option Explicit
+'On Error Resume Next
 
-If WScript.Arguments.Count <> 1 Then
+If WScript.Arguments.Count <> 2 Then
 	WScript.Quit 0
 End If
-inFile = WScript.Arguments(0)
 
+inDir = WScript.Arguments(0)
+inDir = Replace(inDir, "/", "\")
+
+inFile = WScript.Arguments(1)
 inFile = Replace(inFile, "/", "\")
-srcDir = "C:\files\repo\mfo_epf\src\" & inFile
+
+srcDir = inDir & "\src\" & inFile
 
 Set FSO = CreateObject("Scripting.FileSystemObject")
 srcDirTree = Split(srcDir, "\")
@@ -19,5 +24,31 @@ For i = 0 To UBound(srcDirTree)
 	End If
 Next
 
-Dump = """C:\Program Files (x86)\1cv8\8.3.10.2252\bin\1cv8.exe"" DESIGNER /F""C:\files\repo\sysdb"" /DumpExternalDataProcessorOrReportToFiles """ & srcDir & """ ""C:\files\repo\mfo_epf\" & inFile & """ -Format Hierarchical"
+If Err.Number <> 0 Then
+	WScript.Quit 0
+End If
+
+bin1C = ""
+Set fileConf = FSO.OpenTextFile("dump.conf", 1, False)
+Do While Not fileConf.AtEndOfStream
+	bin1C = Trim(fileConf.ReadLine)
+Loop
+fileConf.Close
+
+If Err.Number <> 0 Then
+	WScript.Quit 0
+End If
+
+If Len(bin1C) Then
+	WScript.Quit 0
+End If
+
+bin1C = """" & bin1C & """"
+sysdb = """" & inDir & "\.git\hooks\1cv8\sysdb"""
+
+Dump = bin1C & " DESIGNER /F" & sysdb & " /DumpExternalDataProcessorOrReportToFiles """ & srcDir & """ """ & inDir & "\" & inFile & """ -Format Hierarchical"
 WShell.Run Dump, 0, True
+
+If Err.Number <> 0 Then
+	WScript.Quit 0
+End If
