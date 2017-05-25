@@ -7,6 +7,7 @@ epfFiles=$(git status --short | grep -E '^(A|M)' | awk '{ print $2 }' | grep -E 
 for file in $epfFiles; do
 	echo 'Commit erf ' $file
 	wscript .git/hooks/1cv8/dump.vbs $file
+	git add .
 done
 
 # All modified/added epf files
@@ -15,4 +16,5 @@ epfFiles=$(git status --short | grep -E '^(A|M)' | awk '{ print $2 }' | grep -E 
 for file in $epfFiles; do
 	echo 'Commit epf ' $file
 	wscript .git/hooks/1cv8/dump.vbs $file
+	git add .
 done

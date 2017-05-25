@@ -12,7 +12,7 @@ Set FSO = CreateObject("Scripting.FileSystemObject")
 srcDirTree = Split(srcDir, "\")
 For i = 0 To UBound(srcDirTree)
 	If srcDirTree(i) <> "" Then
-		srcDirNext = srcDiraa & srcDirTree(i) & "\"
+		srcDirNext = srcDirNext & srcDirTree(i) & "\"
 		If Not FSO.FolderExists(srcDirNext) Then
 			FSO.CreateFolder(srcDirNext)
 		End If
