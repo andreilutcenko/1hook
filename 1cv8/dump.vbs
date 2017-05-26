@@ -1,6 +1,3 @@
-'Option Explicit
-'On Error Resume Next
-
 If WScript.Arguments.Count <> 2 Then
 	WScript.Quit 0
 End If
@@ -24,22 +21,15 @@ For i = 0 To UBound(srcDirTree)
 	End If
 Next
 
-If Err.Number <> 0 Then
-	WScript.Quit 0
-End If
-
 bin1C = ""
-Set fileConf = FSO.OpenTextFile("dump.conf", 1, False)
+Set fileConf = FSO.OpenTextFile(inDir & "\.git\hooks\1cv8\dump.conf", 1, False)
 Do While Not fileConf.AtEndOfStream
 	bin1C = Trim(fileConf.ReadLine)
+	Exit Do
 Loop
 fileConf.Close
 
-If Err.Number <> 0 Then
-	WScript.Quit 0
-End If
-
-If Len(bin1C) Then
+If Len(bin1C) = 0 Then
 	WScript.Quit 0
 End If
 
@@ -47,8 +37,6 @@ bin1C = """" & bin1C & """"
 sysdb = """" & inDir & "\.git\hooks\1cv8\sysdb"""
 
 Dump = bin1C & " DESIGNER /F" & sysdb & " /DumpExternalDataProcessorOrReportToFiles """ & srcDir & """ """ & inDir & "\" & inFile & """ -Format Hierarchical"
-WShell.Run Dump, 0, True
 
-If Err.Number <> 0 Then
-	WScript.Quit 0
-End If
+Set WShell = WScript.CreateObject("Wscript.Shell")
+WShell.Run Dump, 0, True
