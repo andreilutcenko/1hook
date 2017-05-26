@@ -1,4 +1,8 @@
 *
 !pre-commit
 !/1cv8/dump.vbs
+<<<<<<< HEAD
 !/1cv8/dump.conf
+=======
+!/1cv8/dump.conf
+>>>>>>> 35a1c012d7ba73d664fb85480ed24822546ad1af
