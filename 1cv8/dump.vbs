@@ -1,3 +1,6 @@
+' Для работы скрипта необходимо создать файл настроек dump.conf в каталоге с dump.vbs и указать полный путь к файлу платформы.
+' Пример C:\Program Files (x86)\1cv8\8.3.10.2252\bin\1cv8.exe
+
 If WScript.Arguments.Count <> 2 Then
 	WScript.Quit 0
 End If
