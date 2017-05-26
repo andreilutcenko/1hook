@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# Для работы скрипта необходимо создать файл настроек dump.conf в каталоге с dump.vbs и указать полный путь к файлу платформы.
+# Пример C:\Program Files (x86)\1cv8\8.3.10.2252\bin\1cv8.exe
+
 echo 'Start hooks before commit for erf and epf'
 
 # All modified/added erf files
